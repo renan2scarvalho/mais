@@ -1,0 +1,55 @@
+Esta tabela contém todo o conteúdo textual das seções 1 (atos normativos: leis, decretos, resoluções, portarias, etc), 2 (atos de pessoal: nomeações, exonerações, aposentadorias, etc) e 3 (contratos, editais, licitações, etc.) do Diário Oficial da União. No momento, a data mais antiga presente na tabela é abril de 2019.
+
+O Diário Oficial da União é tipicamente publicado uma vez por dia (edições ordinárias) de madrugada (perto das 4h da manhã), mas pode atrasar bastante (tipicamente, até às 11h da manhã). Entretanto, esses horários não são rígidos e podem variar, e as seções (ou partes das seções) podem ser publicadas em horários diferentes. Além disso, é possível (e comum) que sejam publicadas edições extras (tipicamente uma ou duas) ao longo do dia. A tabela é atualizada a cada 30 minutos.
+
+
+Para saber mais acesse:
+Website: 
+Github: https://github.com/basedosdados/mais/
+
+Ajude a manter o projeto :)
+Apoia-se: https://apoia.se/basedosdados
+
+Partições (Filtre a tabela por essas colunas para economizar dinheiro e tempo)
+---------
+- particao_data_publicacao
+- particao_secao_edicao
+
+Nível da Observação (Colunas que identificam cada linha unicamente)
+-------------------
+- url
+
+Cobertura Temporal
+------------------
+- 2019
+- 2020
+
+Cobertura Espacial
+------------------
+- brasil
+
+Tratamento
+----------
+O código de extração dos dados chamado DOUTOR armazena os dados no formato JSON, sendo um arquivo por matéria do DOU. Cada JSON contém uma lista de dicionários com algumas chaves específicas como 'capture_date' e 'api_url'. As demais chaves de cada dicionário são 'key' e 'value'. As keys são tags de HTML presentes na matéria, e as values são os conteúdos. Ou seja: a maior parte das informações de cada matéria são armazenadas no formato 'key-value-pairs'. Em caso de tags que se repetem (como títulos, eventualmente), o conteúdo de todas elas é agregado numa única string, com o separador ' | '.
+
+Através de SQL, os 'key-value-pairs' mais relevantes são selecionados como colunas para serem apresentadas na tabela (campos como 'titulo', 'orgao', 'secao', etc). As datas são colocadas no formato de data.
+
+Uma das colunas mais importantes é a 'texto_completo', que contém todo o conteúdo textual da página HTML da matéria, inclusive rodapés, links, título e nome do órgão. A partir dessa coluna, são geradas duas novas (originalmente não identificadas com tags de HTML, como acontece com a ementa, o título e o órgão, por exemplo): a 'texto_principal' e a 'excerto'. Estas são seleções de trechos do 'texto_completo' feitas com SQL.
+
+Frequencia de Atualização
+-------------------------
+hora
+
+Tratado por
+-----------
+Nome: Henrique Xavier
+Código: https://github.com/gabinete-compartilhado-acredito/DOUTOR
+Website: http://henriquexavier.net/
+Email: hsxavier@gmail.com
+
+Publicado por
+-------------
+Nome: Henrique Xavier
+Código: https://github.com/basedosdados/mais/tree/master/bases/br_imprensa_nacional_dou/code
+Website: http://henriquexavier.net/
+Email: hsxavier@gmail.com
